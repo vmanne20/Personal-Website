@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import '../css/BackgroundImages.css';
 
-class HomeBackground extends Component {
+class LandingBackground extends Component {
     render() {
-        return <div className="HomeBackground">
+        return <div className="LandingBackground">
         </div>
     }
 }
 
-export default HomeBackground;
+export default LandingBackground;
