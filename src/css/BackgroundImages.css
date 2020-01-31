@@ -1,0 +1,8 @@
+.LandingBackground {
+    background: url(../../static/images/starrynight.jpg) no-repeat center center fixed;
+    min-height: 100vh; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

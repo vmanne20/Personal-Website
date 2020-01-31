@@ -1,3 +1,9 @@
-import React from "react"
+import React from 'react';
+// import ResumeButton from '../components/ResumeButton';
+import '../css/index.css';
+// import '../css/BackgroundImages.css';
+import HomeBackground from '../components/HomeBackground';
 
-export default () => <div>Hello world!</div>
+export default () => 
+    <HomeBackground/>
+    
