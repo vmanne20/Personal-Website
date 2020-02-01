@@ -1,9 +1,19 @@
 import React from 'react';
-// import ResumeButton from '../components/ResumeButton';
 import '../css/index.css';
-// import '../css/BackgroundImages.css';
 import LandingBackground from '../components/LandingBackground';
+import IntroBackground from '../components/IntroBackground';
 
-export default () => 
-    <LandingBackground/>
-    
+export default () => (
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Francois+One|Merienda+One|Volkhov|Noto+Sans&display=swap" rel="stylesheet"/>
+    </head>
+    <body>
+        <LandingBackground/>
+        {/* <IntroBackground/>
+        <LandingBackground/>
+        <IntroBackground/> */}
+    </body>
+</html>
+);
+

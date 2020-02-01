@@ -1,4 +1,62 @@
-html, body {
+html {
     height: 100%;
+}
+
+body {
+    min-height: 100%;
     margin: 0;
+}
+
+.LandingBackground {
+    background: url(../../static/images/starrynight.jpg) no-repeat center center fixed;
+    height: 100vh; 
+    width: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+}
+
+.LandingContent {
+    display: inline-block; 
+    width: 50%;
+
+    /* 
+    Top and bottom have 0 margin.
+    Right and left have margins calculated by browser (right and left will have equal margin). This will center the div.
+    */
+    margin: 18% 25% 0 25%;     
+}
+
+.LandingContent > h1 {
+    color: white;
+    font-size: 55px;
+    word-spacing: 5px;
+    text-align: center;
+    font-family: 'Merienda One', cursive;
+    line-height: 50%;
+}
+
+.LandingContent > p {
+    color: white;
+    font-size: 22px;
+    word-spacing: 5px;
+    text-align: center;
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 50%;
+}
+
+.IntroBackground {
+    background: url(../../static/images/goldengate.jpg) no-repeat center center fixed;
+    height: 100vh; 
+    width: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.ProfilePic {
+    border-radius: 15%;
 }
