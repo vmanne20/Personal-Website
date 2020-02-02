@@ -7,26 +7,21 @@ body {
     margin: 0;
 }
 
-.LandingBackground {
-    background: url(../../static/images/starrynight.jpg) no-repeat center center fixed;
+.LandingPage {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), url(../../static/images/starrynight.jpg) no-repeat center center fixed;
     height: 100vh; 
     width: 100%;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    
 }
 
 .LandingContent {
+    /* these properties help center the content */
     display: inline-block; 
     width: 50%;
-
-    /* 
-    Top and bottom have 0 margin.
-    Right and left have margins calculated by browser (right and left will have equal margin). This will center the div.
-    */
-    margin: 18% 25% 0 25%;     
+    margin: 18% 25% 0 25%;  
 }
 
 .LandingContent > h1 {
@@ -47,16 +42,91 @@ body {
     line-height: 50%;
 }
 
-.IntroBackground {
-    background: url(../../static/images/goldengate.jpg) no-repeat center center fixed;
-    height: 100vh; 
-    width: 100%;
+.IntroPage {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(../../static/images/goldengate.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100vh; 
+    width: 100%;
 }
 
-.ProfilePic {
-    border-radius: 15%;
+.SectionHeader {
+    display: inline-block; 
+    width: 50%;
+    margin: 2% 25% 0 25%;     
+}
+
+.SectionHeader > h1 {
+    color: white;
+    font-size: 55px;
+    word-spacing: 5px;
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+}
+
+.IntroImage {
+    /* border: 5px solid #40e0d0; */
+    /* min-width: 150px;
+    min-height: 150px; */
+    height: 30%;
+    width: auto;  
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* display: flex;
+    justify-content: space-between;
+    vertical-align: middle; */
+}
+
+.frame {
+    /* border: 3px solid red; */
+    width: 27%;
+    position: relative;
+}
+
+/* .tjhsst {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    left: 27%;
+    top: 22%;
+} */
+
+.profilePic {
+    border: 5px solid white;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
+
+/* .vt {
+    display: inline-block;
+    height: 30%;
+    width: 130px;
+    position: absolute;
+    left: 20%;
+    top: 35%;
+} */
+
+.IntroContent {
+    /* these properties help center the content */
+    display: inline-block; 
+    width: 50%;
+    margin: 3% 25% 0 25%;  
+    /* border: 3px solid red; */
+}
+
+.IntroContent > p {
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 27px;
 }
