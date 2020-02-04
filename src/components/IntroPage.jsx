@@ -8,7 +8,7 @@ class IntroPage extends Component {
     render() {
         return (
         <div className="IntroPage">
-            <SectionHeader name="INTRODUCTION"/>
+            <SectionHeader name="Introduction" color="white"/>
             <IntroImage/>
             <IntroContent/>
         </div>

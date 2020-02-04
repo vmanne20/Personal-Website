@@ -8,7 +8,7 @@ body {
 }
 
 .LandingPage {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), url(../../static/images/starrynight.jpg) no-repeat center center fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(../../static/images/starrynight.jpg) no-repeat center center fixed;
     height: 100vh; 
     width: 100%;
     -webkit-background-size: cover;
@@ -43,7 +43,7 @@ body {
 }
 
 .IntroPage {
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(../../static/images/goldengate.jpg) no-repeat center center fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 1)), url(../../static/images/goldengate.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -55,15 +55,16 @@ body {
 .SectionHeader {
     display: inline-block; 
     width: 50%;
-    margin: 2% 25% 0 25%;     
+    margin: 3% 25% 0 25%;     
 }
 
 .SectionHeader > h1 {
-    color: white;
+    /* color: white; */
     font-size: 55px;
     word-spacing: 5px;
     text-align: center;
-    font-family: 'Kaushan Script', cursive;
+    /* font-family: 'Kaushan Script', cursive; */
+    font-family: 'Cardo', serif;
 }
 
 .IntroImage {
@@ -75,15 +76,10 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 2%;
     /* display: flex;
     justify-content: space-between;
     vertical-align: middle; */
-}
-
-.frame {
-    /* border: 3px solid red; */
-    width: 27%;
-    position: relative;
 }
 
 /* .tjhsst {
@@ -95,7 +91,7 @@ body {
     top: 22%;
 } */
 
-.profilePic {
+.IntroImage > img {
     border: 5px solid white;
     border-radius: 50%;
     display: block;
@@ -103,7 +99,7 @@ body {
     margin-right: auto;
     width: 200px;
     height: 200px;
-    text-align: center;
+    /* text-align: center; */
 }
 
 /* .vt {
@@ -128,5 +124,26 @@ body {
     text-align: center;
     font-size: 18px;
     font-family: 'Noto Sans', sans-serif;
-    line-height: 27px;
+    line-height: 30px;
+}
+
+.EmploymentPage {
+    background-color: rgba(244, 239, 239, 0.927);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 220vh; 
+    width: 100%;
+}
+
+.EmploymentContent {
+    /* height: 30%; */
+    width: 55%;  
+    display: block;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-bottom: 15%; */
+    /* border: 3px solid blue; */
 }

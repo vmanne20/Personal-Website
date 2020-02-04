@@ -5,7 +5,7 @@ class SectionHeader extends Component {
     render() {
         return (
             <div className="SectionHeader">
-                <h1>{this.props.name}</h1>
+                <h1 style={{color: `${this.props.color}`}}>{this.props.name}</h1>
             </div>
         );
     }
