@@ -61,10 +61,11 @@ body {
 .SectionHeader > h1 {
     /* color: white; */
     font-size: 55px;
-    word-spacing: 5px;
+    word-spacing: 10px;
     text-align: center;
     /* font-family: 'Kaushan Script', cursive; */
-    font-family: 'Cardo', serif;
+    /* font-family: 'Cardo', serif; */
+    font-family: 'Proza Libre', sans-serif;
 }
 
 .IntroImage {
@@ -128,22 +129,46 @@ body {
 }
 
 .EmploymentPage {
-    background-color: rgba(244, 239, 239, 0.927);
+    /* background-color: rgba(244, 239, 239, 0.927); */
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 1)), url(../../static/images/seattle.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 220vh; 
+    /* height: 100%; */
+    height: auto; 
     width: 100%;
 }
 
 .EmploymentContent {
     /* height: 30%; */
-    width: 55%;  
+    width: 65%;  
     display: block;
     margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
-    /* margin-bottom: 15%; */
+    padding-bottom: 4%;
+    /* border: 3px solid blue; */
+}
+
+.ProjectsPage {
+    /* background-color: rgba(215, 210, 210, 0.975); */
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(../../static/images/water.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: auto; 
+    width: 100%;
+}
+
+.ProjectsContent {
+    /* height: 30%; */
+    width: 90%;  
+    display: block;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 4%;
     /* border: 3px solid blue; */
 }

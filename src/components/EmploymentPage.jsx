@@ -7,7 +7,7 @@ class EmploymentPage extends Component {
     render() {
         return (
         <div className="EmploymentPage">
-            <SectionHeader name="Employment" color="black"/>
+            <SectionHeader name="Employment" color="white"/>
             <EmploymentContent/>
         </div>
         );
