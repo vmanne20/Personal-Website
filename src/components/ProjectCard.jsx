@@ -1,45 +1,111 @@
 import React from 'react';
 import '../css/index.css';
-import {Grid, Card, CardActionArea, CardMedia, CardContent, Typography, Link, Tooltip, Zoom} from '@material-ui/core';
+import { Grid, Card, CardHeader, CardActionArea, CardActions, Button, CardMedia, CardContent, Typography, Link, Tooltip, Zoom, IconButton, Collapse, Modal, Backdrop, Fade } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = { 
+const styles = theme => ({
     card: {
-        margin: 13,
+        margin: 18,
         // display: "block",
         flexDirection: "column",
-        // Justify the content so that CardContent will always be at the top of the card,
-        // and CardActions will be at the bottom
         justifyContent: "space-between",
         raised: "true"
+    },
+    media: {
+        '&:hover': {
+            background: '#E1E1E1'
+        }
+    },
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        // width: "50"
+    },
+    paper: {
+        backgroundColor: theme.palette.background.paper,
+        // border: '2px solid #000',
+        // boxShadow: theme.shadows[2],
+        maxWidth: "80vh",
+        padding: theme.spacing(2, 4, 3)
     }
-};
+});
+
+
 
 const ProjectCard = withStyles(styles)(({ classes, link, image, title, description }) => {
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <Grid item xs component={Card} className={classes.card}>
-            <Link href={link} target="_blank">
-                <CardActionArea>
-                    <Tooltip title="View code on Github" TransitionComponent={Zoom} arrow>
+            <CardActionArea>
+                <Tooltip title="Learn More" TransitionComponent={Zoom} arrow>
+                    <CardMedia
+                    className={classes.media}
+                    component="img"
+                    alt={title}
+                    height="200"
+                    image={image}
+                    title="View Code on Github"
+                    onClick={handleOpen}
+                    />
+                </Tooltip>     
+            </CardActionArea>
+
+            <CardHeader
+                titleTypographyProps={{ variant:'h6' }}
+                title={title}
+            />
+
+             <CardActions>
+                <Button size="small" color="primary" onClick={handleOpen}>
+                    Learn More
+                </Button>
+                <Button size="small" color="primary">
+                    View in Github
+                </Button>
+            </CardActions>
+
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                timeout: 500,
+                }}
+            >
+                <Fade in={open}>
+                    <div className={classes.paper}>
+                        <Typography gutterBottom variant="h5" component="h5">
+                            {title}
+                        </Typography>
                         <CardMedia
-                        className={classes.media}
-                        component="img"
-                        alt={title}
-                        height="200"
-                        image={image}
-                        title="View Code on Github"
+                            className={classes.media}
+                            component="img"
+                            alt={title}
+                            height="300"
+                            image={image}
+                            title="View Code on Github"
                         />
-                    </Tooltip>
-                </CardActionArea>
-            </Link>
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="h5">
-                    {title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                {description}
-                </Typography>
-            </CardContent>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {description}
+                        </Typography>
+                    </div>
+                </Fade>
+            </Modal>
         </Grid>
     );
 });

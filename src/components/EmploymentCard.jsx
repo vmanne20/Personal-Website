@@ -1,27 +1,53 @@
 import React from 'react';
 import '../css/index.css';
-import {Grid, Card, CardActionArea, CardMedia, CardContent, Typography, Link, Tooltip, Zoom} from '@material-ui/core';
+import clsx from 'clsx';
+import { Grid, Card, CardHeader, CardActionArea, CardMedia, CardContent, Typography, Link, Tooltip, Zoom, CardActions, IconButton, Collapse } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     media: {
         maxHeight: 300,
         maxWidth: 350,
-        height: "auto",
+        // height: "auto",
+        height: 160,
         display: "block",
         marginLeft: "auto",
         marginRight: "auto"
+    },
+    actionArea: {
+        '&:hover': {
+            background: '#E1E1E1',
+        }
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+          duration: theme.transitions.duration.shortest
+        })
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)'
     }
-});
+}));
 
 export default function EmploymentCard({ company, link, image, title, location, date, description }) {
+
     const classes = useStyles();
+
+    const [expanded, setExpanded] = React.useState(false);
+
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
+
     return (
         <Grid item xs={12}>
             <Card raised="true">
-                <Link href={link} target="_blank">
-                    <CardActionArea>
-                        <Tooltip title="View Company Website" TransitionComponent={Zoom} arrow>
+                <Tooltip title="View Company Website" TransitionComponent={Zoom} arrow>
+                    <CardActionArea className={classes.actionArea}>
+                        <Link href={link} target="_blank">
                             <CardMedia
                             className={classes.media}
                             component="img"
@@ -30,20 +56,32 @@ export default function EmploymentCard({ company, link, image, title, location, 
                             image={image}
                             title={company}
                             />
-                        </Tooltip>
+                        </Link>
                     </CardActionArea>
-                </Link>
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h5">
-                        {title}
-                    </Typography>
-                    <Typography  gutterBottom variant="subtitle1" component="h6">
-                        {location} &ensp; &bull; &ensp; {date} 
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {description}
-                    </Typography>
-                </CardContent>
+                </Tooltip>
+                <CardHeader
+                    action={
+                        <Tooltip title="View Description" TransitionComponent={Zoom} arrow>
+                            <IconButton className={clsx(classes.expand, {
+                                [classes.expandOpen]: expanded})}
+                            onClick={handleExpandClick}
+                            aria-expanded={expanded}
+                            aria-label="show more"
+                            >
+                                <ExpandMoreIcon />
+                            </IconButton>
+                        </Tooltip>
+                    }
+                    title={title}
+                    subheader={<> {date} &ensp; &bull; &ensp; {location} </>}
+                />
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {description}
+                        </Typography>
+                    </CardContent>
+                </Collapse>
             </Card>
         </Grid>
     );

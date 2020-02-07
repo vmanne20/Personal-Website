@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../css/index.css';
-import {Grid} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import EmploymentCard from './EmploymentCard';
 
 class EmploymentContent extends Component {
@@ -10,7 +10,7 @@ class EmploymentContent extends Component {
             link: 'https://www.microsoft.com/en-us/',
             image: require('../../static/images/microsoft.png'),
             title: 'Software Engineer',
-            location: 'Redmond, WA',
+            location: 'Redmond, WA ',
             date: 'March 2020 - Present',
             description: 'I will be working on the Localization team in the Azure Commerce and Ecosystems org.'
         };

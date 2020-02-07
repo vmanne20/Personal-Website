@@ -5,7 +5,6 @@ import ProjectCard from './ProjectCard';
 
 class ProjectsContent extends Component {
     render() {
-        
         const personalWebsite = {
             link: 'https://github.com/vmanne20/Personal-Website',
             image: require('../../static/images/vm_website.png'),
