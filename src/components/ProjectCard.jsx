@@ -45,6 +45,14 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
         setOpen(false);
     };
 
+    const [clicked, setClicked] = React.useState(false);
+
+    React.useEffect(() => {
+        if (clicked) {
+            window.open(link, "_blank");
+        }
+    });
+
     return (
         <Grid item xs component={Card} className={classes.card}>
             <CardActionArea>
@@ -70,7 +78,7 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
                 <Button size="small" color="primary" onClick={handleOpen}>
                     Learn More
                 </Button>
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" onClick={() => setClicked(true)}>
                     View in Github
                 </Button>
             </CardActions>
