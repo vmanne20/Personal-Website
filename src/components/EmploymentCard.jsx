@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/index.css';
 import clsx from 'clsx';
-import { Grid, Card, CardHeader, CardActionArea, CardMedia, CardContent, Typography, Link, Tooltip, Zoom, CardActions, IconButton, Collapse } from '@material-ui/core';
+import { Grid, Divider, Card, CardHeader, CardActionArea, CardMedia, CardContent, Typography, Link, Tooltip, Zoom, CardActions, IconButton, Collapse } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -29,6 +29,9 @@ const useStyles = makeStyles(theme => ({
     },
     expandOpen: {
         transform: 'rotate(180deg)'
+    },
+    description: {
+        padding: theme.spacing(1)
     }
 }));
 
@@ -76,8 +79,9 @@ export default function EmploymentCard({ company, link, image, title, location, 
                     subheader={<> {date} &ensp; &bull; &ensp; {location} </>}
                 />
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <Divider variant="middle"/>
                     <CardContent>
-                        <Typography variant="body2" color="textSecondary" component="p">
+                        <Typography variant="body2" color="textPrimary" component="p" className={classes.description}>
                             {description}
                         </Typography>
                     </CardContent>

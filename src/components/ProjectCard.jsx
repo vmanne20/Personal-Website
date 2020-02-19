@@ -1,9 +1,22 @@
 import React from 'react';
 import '../css/index.css';
-import { Grid, Card, CardHeader, CardActionArea, CardActions, Button, CardMedia, CardContent, Typography, Link, Tooltip, Zoom, IconButton, Collapse, Modal, Backdrop, Fade } from '@material-ui/core';
+import { Grid, Card, CardHeader, CardActionArea, CardActions, Button, CardMedia, CardContent, Typography, Link, Tooltip, Zoom, IconButton, Collapse, Modal, Backdrop, Fade, Dialog } from '@material-ui/core';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import CloseIcon from '@material-ui/icons/Close';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(2),
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
     card: {
         margin: 18,
         // display: "block",
@@ -16,12 +29,6 @@ const styles = theme => ({
             background: '#E1E1E1'
         }
     },
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        // width: "50"
-    },
     paper: {
         backgroundColor: theme.palette.background.paper,
         // border: '2px solid #000',
@@ -30,6 +37,26 @@ const styles = theme => ({
         padding: theme.spacing(2, 4, 3)
     }
 });
+
+const DialogTitle = withStyles(styles)(props => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+      <MuiDialogTitle disableTypography className={classes.root} {...other}>
+        <Typography variant="h6">{children}</Typography>
+        {onClose ? (
+          <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        ) : null}
+      </MuiDialogTitle>
+    );
+});
+  
+const DialogContent = withStyles(theme => ({
+    root: {
+        padding: theme.spacing(2),
+    },
+})) (MuiDialogContent);
 
 
 
@@ -45,13 +72,9 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
         setOpen(false);
     };
 
-    const [clicked, setClicked] = React.useState(false);
-
-    React.useEffect(() => {
-        if (clicked) {
-            window.open(link, "_blank");
-        }
-    });
+    const openGithub = () => {
+        window.open(link, '_blank');
+    }
 
     return (
         <Grid item xs component={Card} className={classes.card}>
@@ -78,28 +101,18 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
                 <Button size="small" color="primary" onClick={handleOpen}>
                     Learn More
                 </Button>
-                <Button size="small" color="primary" onClick={() => setClicked(true)}>
+                <Button size="small" color="primary" onClick={openGithub}> 
                     View in Github
                 </Button>
             </CardActions>
-
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
-                open={open}
-                onClose={handleClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                timeout: 500,
-                }}
-            >
+            
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <Fade in={open}>
-                    <div className={classes.paper}>
-                        <Typography gutterBottom variant="h5" component="h5">
-                            {title}
-                        </Typography>
+                <div className={classes.paper}>
+                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                        {title}
+                    </DialogTitle>
+                    <DialogContent>
                         <CardMedia
                             className={classes.media}
                             component="img"
@@ -108,12 +121,15 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
                             image={image}
                             title="View Code on Github"
                         />
-                        <Typography variant="body2" color="textSecondary" component="p">
+                    </DialogContent>
+                    <DialogContent>
+                        <Typography variant="body2" color="textPrimary" component="p">
                             {description}
                         </Typography>
-                    </div>
+                    </DialogContent>
+                </div>
                 </Fade>
-            </Modal>
+            </Dialog>
         </Grid>
     );
 });
