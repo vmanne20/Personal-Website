@@ -35,7 +35,7 @@ class ProjectsContent extends Component {
             Capstone class. This is a mobile app that allows employees and small business owners \
             to track personal and business expenses and taxes. We used ', <b>React Native</b>, ' and ', <b>Redux</b>, '\
             to build the components of the profile, and implemented a REST API with ', <b>Mongoose</b>, ' ORM \
-            to categorize expenses and calcualte taxes. We used ', <b>Node</b>, ' and ', <b>Express</b>, ' libraries for the back-end.']
+            to categorize expenses and calculate taxes. We used ', <b>Node</b>, ' and ', <b>Express</b>, ' libraries for the back-end.']
         };
 
         const autoRepairDB = {

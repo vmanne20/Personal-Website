@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/index.css';
-import { Grid, Card, CardHeader, CardActionArea, CardActions, Button, CardMedia, CardContent, Typography, Link, Tooltip, Zoom, IconButton, Collapse, Modal, Backdrop, Fade, Dialog } from '@material-ui/core';
+import { Grid, Card, CardHeader, CardActionArea, CardActions, Button, CardMedia, CardContent, Typography, Link, Tooltip, Zoom, IconButton, Collapse, Modal, Backdrop, Fade, Dialog, Slide } from '@material-ui/core';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import CloseIcon from '@material-ui/icons/Close';
@@ -58,7 +58,9 @@ const DialogContent = withStyles(theme => ({
     },
 })) (MuiDialogContent);
 
-
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const ProjectCard = withStyles(styles)(({ classes, link, image, title, description }) => {
 
@@ -106,8 +108,9 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
                 </Button>
             </CardActions>
             
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-                <Fade in={open}>
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}
+            TransitionComponent={Transition}>
+                {/* <Fade in={open}> */}
                 <div className={classes.paper}>
                     <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                         {title}
@@ -128,7 +131,7 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
                         </Typography>
                     </DialogContent>
                 </div>
-                </Fade>
+                {/* </Fade> */}
             </Dialog>
         </Grid>
     );
