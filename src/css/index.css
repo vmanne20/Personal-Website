@@ -174,8 +174,8 @@ body {
 }
 
 .EducationPage {
-    background-color: rgba(244, 239, 239, 0.927); 
-    /* background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(../../static/images/water.jpg) no-repeat center center fixed; */
+    /* background-color: rgba(244, 239, 239, 0.927);  */
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(../../static/images/mountains.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
