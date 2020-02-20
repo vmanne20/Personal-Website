@@ -5,6 +5,7 @@ import IntroPage from '../components/IntroPage';
 import EmploymentPage from '../components/EmploymentPage';
 import ProjectsPage from '../components/ProjectsPage';
 import EducationPage from '../components/EducationPage';
+import SkillsPage from '../components/SkillsPage';
 
 export default () => (
 <html>
@@ -19,6 +20,7 @@ export default () => (
         <IntroPage/>
         <EmploymentPage/>
         <ProjectsPage/>
+        <SkillsPage/>
         <EducationPage/>
     </body>
 </html>

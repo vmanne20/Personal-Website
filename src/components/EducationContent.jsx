@@ -20,7 +20,7 @@ class EducationContent extends Component {
             school: 'Virginia Tech',
             location: 'Blacksburg, VA',
             date: '2016-2019',
-            description: [<br/>, 'B.S. Computer Science', <br/> ,'Summa Cum Laude', <br/>, <br/>, '\
+            description: [<br/>, 'B.S. Computer Science', <br/> ,'Summa Cum Laude', <br/>, '\
             ', <b>Activities:</b>, ' Galileo Engineering Living/Learning Community, Hackers@VT, ACM ICPC Programming Team']
         };
 
