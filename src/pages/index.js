@@ -6,6 +6,7 @@ import EmploymentPage from '../components/EmploymentPage';
 import ProjectsPage from '../components/ProjectsPage';
 import EducationPage from '../components/EducationPage';
 import SkillsPage from '../components/SkillsPage';
+import ContactsPage from '../components/ContactsPage';
 
 export default () => (
 <html>
@@ -22,6 +23,7 @@ export default () => (
         <ProjectsPage/>
         <SkillsPage/>
         <EducationPage/>
+        <ContactsPage/>
     </body>
 </html>
 );

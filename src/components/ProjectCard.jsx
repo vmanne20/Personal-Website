@@ -3,6 +3,7 @@ import '../css/index.css';
 import { Grid, Card, CardHeader, CardActionArea, CardActions, Button, CardMedia, CardContent, Typography, Link, Tooltip, Zoom, IconButton, Collapse, Modal, Backdrop, Fade, Dialog, Slide } from '@material-ui/core';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
+import MuiDialogActions from '@material-ui/core/DialogActions';
 import CloseIcon from '@material-ui/icons/Close';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -26,7 +27,7 @@ const styles = theme => ({
     },
     media: {
         '&:hover': {
-            background: '#E1E1E1'
+            filter: "brightness(60%)"
         }
     },
     paper: {
@@ -57,6 +58,14 @@ const DialogContent = withStyles(theme => ({
         padding: theme.spacing(2),
     },
 })) (MuiDialogContent);
+
+const DialogActions = withStyles(theme => ({
+    root: {
+      margin: 0,
+      padding: theme.spacing(1),
+      float: "left"
+    },
+})) (MuiDialogActions);
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -103,21 +112,21 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
                 <Button size="small" color="primary" onClick={handleOpen}>
                     Learn More
                 </Button>
-                <Button size="small" color="primary" onClick={openGithub}> 
-                    View in Github
-                </Button>
+                <Link href={link} target="_blank">
+                    <Button size="small" color="primary"> 
+                        View in Github
+                    </Button>
+                </Link>
             </CardActions>
             
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}
             TransitionComponent={Transition}>
-                {/* <Fade in={open}> */}
                 <div className={classes.paper}>
                     <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                         {title}
                     </DialogTitle>
                     <DialogContent>
                         <CardMedia
-                            className={classes.media}
                             component="img"
                             alt={title}
                             height="300"
@@ -130,8 +139,14 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
                             {description}
                         </Typography>
                     </DialogContent>
+                    <DialogActions>
+                        <Link href={link} target="_blank">
+                            <Button autoFocus color="primary">
+                                View in Github
+                            </Button>
+                        </Link>
+                    </DialogActions>
                 </div>
-                {/* </Fade> */}
             </Dialog>
         </Grid>
     );

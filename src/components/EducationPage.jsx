@@ -7,7 +7,7 @@ class EducationPage extends Component {
     render() {
         return (
         <div className="EducationPage">
-            <SectionHeader name="Education" color="black"/>
+            <SectionHeader name="Education" color="white"/>
             <EducationContent/>
         </div>
         );
