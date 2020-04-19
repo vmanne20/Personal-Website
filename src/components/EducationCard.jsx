@@ -12,6 +12,11 @@ const styles = {
         // and CardActions will be at the bottom
         justifyContent: "space-between",
         raised: "true"
+    },
+    media: {
+        '&:hover': {
+            filter: "brightness(60%)"
+        }
     }
 };
 
@@ -22,6 +27,7 @@ const EducationCard = withStyles(styles)(({ classes, link, image, school, locati
                 <CardActionArea>
                     <Tooltip title="View School Website" TransitionComponent={Zoom} arrow>
                         <CardMedia
+                        className={classes.media}
                         component="img"
                         alt={school}
                         height="270"

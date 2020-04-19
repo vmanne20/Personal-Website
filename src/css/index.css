@@ -7,6 +7,10 @@ body {
     margin: 0;
 }
 
+.NavBar {
+    z-index: 9999;
+}
+
 .LandingPage {
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(../../static/images/starrynight.jpg) no-repeat center center fixed;
     height: 100vh; 
@@ -138,6 +142,7 @@ body {
     /* height: 100%; */
     height: auto; 
     width: 100%;
+    z-index: 1;
 }
 
 .EmploymentContent {
@@ -148,6 +153,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 4%;
+    z-index: 2;
     /* border: 3px solid blue; */
 }
 
@@ -219,8 +225,8 @@ body {
 }
 
 .ContactsPage {
-    /* background-color: white; */
-    background-color: rgba(43, 41, 62, 0.845); 
+    /* background-color: black; */
+    background-color: rgb(21, 20, 31); 
     /* background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(../../static/images/yosemite.jpg) no-repeat center center fixed; */
     -webkit-background-size: cover;
     -moz-background-size: cover;

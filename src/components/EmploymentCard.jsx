@@ -13,11 +13,13 @@ const useStyles = makeStyles(theme => ({
         height: 160,
         display: "block",
         marginLeft: "auto",
-        marginRight: "auto"
+        marginRight: "auto",
+        zIndex: 3
     },
     actionArea: {
         '&:hover': {
             background: '#E1E1E1',
+            opacity: 0.7
         }
     },
     expand: {

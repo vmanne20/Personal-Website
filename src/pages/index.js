@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/index.css';
+import NavBar from '../components/NavBar';
 import LandingPage from '../components/LandingPage';
 import IntroPage from '../components/IntroPage';
 import EmploymentPage from '../components/EmploymentPage';
@@ -17,6 +18,7 @@ export default () => (
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
     </head>
     <body>
+        <NavBar/>
         <LandingPage/>
         <IntroPage/>
         <EmploymentPage/>

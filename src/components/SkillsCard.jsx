@@ -14,6 +14,12 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "column",
         justifyContent: "space-between",
         raised: "true"
+    }, 
+    header: {
+        backgroundColor: "lightgray",
+    },
+    title: {
+        color: "black"
     }
 }));
 
@@ -86,7 +92,7 @@ export default function SkillsCard({ name, tabs }) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="primary">
+      <AppBar position="static" className={classes.header}>
         <Toolbar>
             <Typography variant="h6" className={classes.title}>
             {name}

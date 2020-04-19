@@ -25,6 +25,9 @@ const styles = theme => ({
         backgroundColor: "white",
         overflow: "hidden",
         transition: "transform .3s ease",
+        border: 1,
+        borderRadius: "50%",
+        borderColor: "black",
         '&:hover': {
             filter: "brightness(50%)",
             transform: "scale(1.15)"
