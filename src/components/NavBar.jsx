@@ -22,8 +22,7 @@ const useStyles = makeStyles(theme => ({
         right: theme.spacing(2),
     },
     navBar: {
-        // backgroundColor: "blue",
-        // height: 60,
+        height: 60,
     }
 }));
 
@@ -46,6 +45,32 @@ function LinkTab(props) {
     );
 }
 
+// const LinkTab = withStyles((theme) => ({
+//     root: {
+//         fontWeight: theme.typography.fontWeightRegular,
+//         '&:hover': {
+//             color: '#40a9ff',
+//             opacity: 1,
+//           },
+//           '&$selected': {
+//             color: '#1890ff',
+//             fontWeight: theme.typography.fontWeightMedium,
+//           },
+//           '&:focus': {
+//             color: '#40a9ff',
+//           },
+//           height: 100
+//     }
+// })) ((props) =>
+//     <Tab
+//     component="a"
+//     onClick={(event) => {
+//     event.preventDefault();
+//     }}
+//     {...props}
+//     />
+// );
+
 export default function NavBar() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -64,7 +89,7 @@ export default function NavBar() {
                     onChange={handleChange}
                     aria-label="navigation"
                     >
-                    <LinkTab label="Home" href="/drafts" {...a11yProps(0)}/>
+                    <LinkTab label="Home" href="/drafts" className={classes.navBar} {...a11yProps(0)}/>
                     <LinkTab label="Employment" href="/trash" {...a11yProps(1)}/>
                     <LinkTab label="Projects" href="/spam" {...a11yProps(2)}/>
                     <LinkTab label="Skills" href="/drafts" {...a11yProps(0)}/>
