@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
         raised: "true"
     }, 
     header: {
-        backgroundColor: "lightgray",
+        backgroundColor: "lightgray"
     },
     title: {
         color: "black"
@@ -99,7 +99,7 @@ export default function SkillsCard({ name, tabs }) {
             </Typography>
         </Toolbar>
       </AppBar>
-      <AppBar position="relative" color="transparent">
+      <AppBar position="static" color="transparent">
         <Tabs
           value={value}
           onChange={handleChange}

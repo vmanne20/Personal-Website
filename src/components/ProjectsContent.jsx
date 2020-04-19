@@ -55,7 +55,7 @@ class ProjectsContent extends Component {
             image: require('../../static/images/blabber.jpg'),
             title: 'Blabber',
             // date: 'Winter 2020',
-            description: [']I developed a simple ', <b>Node + Express</b>, ' web app that lets users post random thoughts \
+            description: ['I developed a simple ', <b>Node + Express</b>, ' web app that lets users post random thoughts \
             or "blabs". I configured a REST API for posting and retrieving blabs from ', <b>MongoDB</b>, '. I used ', <b>Docker Compose</b>, ' \
             to store the source code and dependencies in an image and run it as a container to start \
             the app.']

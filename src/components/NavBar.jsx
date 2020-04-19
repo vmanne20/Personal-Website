@@ -22,9 +22,8 @@ const useStyles = makeStyles(theme => ({
         right: theme.spacing(2),
     },
     navBar: {
-        // backgroundColor: "lightblue",
-        height: 100,
-        // zIndex: 9999
+        // backgroundColor: "blue",
+        // height: 60,
     }
 }));
 
@@ -58,7 +57,7 @@ export default function NavBar() {
     return (
         <div className={classes.root}>
             {/* <React.Fragment> */}
-                <AppBar position="fixed">
+                <AppBar position="fixed" className={classes.navBar}>
                     <Tabs
                     variant="fullWidth"
                     value={value}
