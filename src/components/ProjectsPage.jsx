@@ -5,11 +5,12 @@ import ProjectsContent from './ProjectsContent';
 
 class ProjectsPage extends Component {
     render() {
+        const { name } = this.props;
         return (
-        <div className="ProjectsPage">
-            <SectionHeader name="Projects" color="white"/>
-            <ProjectsContent/>
-        </div>
+            <div id={name} className={name}>
+                <SectionHeader name={name} color="white"/>
+                <ProjectsContent/>
+            </div>
         );
     }
 }

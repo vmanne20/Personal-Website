@@ -5,11 +5,12 @@ import ContactsContent from './ContactsContent';
 
 class ContactsPage extends Component {
     render() {
+        const { name } = this.props;
         return (
-        <div className="ContactsPage">
-            <SectionHeader name="Contacts" color="white"/>
-            <ContactsContent/>
-        </div>
+            <div id={name} className={name}>
+                <SectionHeader name={name} color="white"/>
+                <ContactsContent/>
+            </div>
         );
     }
 }

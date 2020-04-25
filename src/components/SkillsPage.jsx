@@ -5,11 +5,12 @@ import SkillsContent from './SkillsContent';
 
 class SkillsPage extends Component {
     render() {
+        const { name } = this.props;
         return (
-        <div className="SkillsPage">
-            <SectionHeader name="Skills" color="white"/>
-            <SkillsContent/>
-        </div>
+            <div id={name} className={name}>
+                <SectionHeader name={name} color="white"/>
+                <SkillsContent/>
+            </div>
         );
     }
 }

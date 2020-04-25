@@ -3,11 +3,13 @@ import LandingContent from './LandingContent';
 import '../css/index.css';
 
 class LandingPage extends Component {
+    
     render() {
+        const { name } = this.props;
         return (
-        <div className="LandingPage">
-            <LandingContent/>
-        </div>
+            <div id={name} className={name}>
+                <LandingContent/>
+            </div>
         );
     }
 }

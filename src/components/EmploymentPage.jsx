@@ -4,12 +4,18 @@ import SectionHeader from './SectionHeader';
 import EmploymentContent from './EmploymentContent';
 
 class EmploymentPage extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.employmentPage = React.createRef();
+    // }
+
     render() {
+        const { name } = this.props;
         return (
-        <div className="EmploymentPage">
-            <SectionHeader name="Employment" color="white"/>
-            <EmploymentContent/>
-        </div>
+            <div id={name} className={name}>
+                <SectionHeader name={name} color="white"/>
+                <EmploymentContent/>
+            </div>
         );
     }
 }
