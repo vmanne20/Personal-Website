@@ -3,6 +3,8 @@ import '../css/index.css';
 import PropTypes from 'prop-types';
 import { AppBar, Tabs, Tab, Typography, Box, Toolbar, Container, useScrollTrigger, Fab, Zoom } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Scrollspy from 'react-scrollspy'
+import inView from 'in-view'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -12,10 +14,6 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.background.paper,
         bottom: theme.spacing(2),
         right: theme.spacing(2),
-    },
-    navBar: {
-        height: 60,
-        backgroundColor: "#1976d2"
     }
 }));
 
@@ -33,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 const NavTabs = withStyles({
     root: {
+        backgroundColor: "#1976d2"
     //   borderTop: '1px solid red',
     //   borderBottom: '5px solid darkblue',
     //   height: 60,
@@ -45,36 +44,51 @@ const NavTabs = withStyles({
     },
   })(Tabs);
 
+
+// const handleView = (item) => {
+//     var tabElem = document.querySelector(`#nav-${item}`);
+//     console.log("Tab: " + item);
+    
+//     let offsetHeight = 0.6*(window.innerHeight);
+//     inView.offset({ bottom: offsetHeight });
+    
+//     inView(`#${item}`)
+//     .on("enter", () => tabElem.classList.add('is-active'))
+//     .on("exit", el  => tabElem.classList.remove('is-active'));
+// };
+
+// // Apply method on each DOM element 
+// ['Home', 'Introduction', 'Employment', 'Projects', 'Education', 'Skills', 'Contacts'].forEach(handleView);
+
 const NavTab = withStyles((theme) => ({
     root: {
+        height: 60,
+        backgroundColor: "#1976d2",
         // fontWeight: theme.typography.fontWeightRegular,
         // color: "#f5f5f5",
         // color: "black",
+
         '&:hover': {
             color: 'white',
             backgroundColor: "#115293"
+            // backgroundColor: "green"
         },
-        '&$selected': {
-            color: '#fafafa',
-            fontWeight: theme.typography.fontWeightMedium,
-            backgroundColor: "#115293"
-        },
-        '&:focus': {
-            color: 'white',
-            fontWeight: theme.typography.fontWeightBold,
-        },
+        // '&:focus': {
+        //     color: 'white',
+        //     fontWeight: theme.typography.fontWeightBold,
+        // },
+    },
+    selected: {
+        color: 'white',
+        backgroundColor: "#115293",
+        fontWeight: theme.typography.fontWeightBold,
     }
+
 })) ((props) =>
     <Tab
         component="a"
         onClick={(event) => {
             event.preventDefault();
-            console.log("Clicked Value: " + props.value);
-
-            document.getElementById(props.value).scrollIntoView({ 
-                behavior: "smooth", 
-                block: "start" 
-            });
         }}
         {...props}
     />
@@ -82,37 +96,49 @@ const NavTab = withStyles((theme) => ({
 
 function setProps(tabName) {
     return {
-      id: `nav-tab-${tabName}`,
+      id: `nav-${tabName}`,
       'aria-controls': `nav-tabpanel-${tabName}`,
       label: tabName,
       value: tabName,
-      href: `/${tabName.toLowerCase()}`
+      href: `#${tabName}`
     };
 }
 
 export default function NavBar() {
     const classes = useStyles();
 
-    const [value, setValue] = React.useState("Home");
+    const [selectedTab, setValue] = React.useState("Home");
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
+    const handleChange = (event, newSelectedTab) => {
+        if (selectedTab !== newSelectedTab) {
+            setValue(newSelectedTab);
+            document.getElementById(`nav-${newSelectedTab}`).className = classes.selected;
+        }
+        var selectedComponent = document.getElementById(newSelectedTab);
+        selectedComponent.scrollIntoView({ 
+            behavior: "smooth", 
+            block: "start" 
+        });
     };
 
     return (
         <div className={classes.root}>
             {/* <React.Fragment> */}
-                <AppBar position="fixed" boxShadow={3} className={classes.navBar}>
-                    <NavTabs centered={true} value={value} onChange={handleChange} aria-label="navigation">
-                        <NavTab className={classes.navBar} {...setProps("Home")}/>
-                        <NavTab className={classes.navBar} {...setProps("Introduction")}/>
-                        <NavTab className={classes.navBar} {...setProps("Employment")}/>
-                        <NavTab className={classes.navBar} {...setProps("Projects")}/>
-                        <NavTab className={classes.navBar} {...setProps("Education")}/>
-                        <NavTab className={classes.navBar} {...setProps("Skills")}/>
-                        <NavTab className={classes.navBar} {...setProps("Contacts")}/>
+                <Scrollspy items={ ['Home', 'Introduction', 'Employment', 'Projects', 'Education', 'Skills', 'Contacts'] } currentClassName="is-active"/>
+
+                <AppBar position="fixed" boxShadow={3}>
+                    <NavTabs centered={true} value={selectedTab} onChange={handleChange} aria-label="navigation">
+
+                            <NavTab {...setProps("Home")}/>
+                            <NavTab {...setProps("Introduction")}/>
+                            <NavTab {...setProps("Employment")}/>
+                            <NavTab {...setProps("Projects")}/>
+                            <NavTab {...setProps("Education")}/>
+                            <NavTab {...setProps("Skills")}/>
+                            <NavTab {...setProps("Contacts")}/>
                     </NavTabs>
                 </AppBar>
+            
                 {/* <Container>
                     <LandingPage/>
                     <IntroPage/>
@@ -125,26 +151,4 @@ export default function NavBar() {
             {/* </React.Fragment> */}
         </div>
     );
-
-    // return (
-    //     <React.Fragment>
-    //         <AppBar position="fixed" className={classes.appBar}>
-    //             <Toolbar></Toolbar>
-    //         </AppBar>
-    //         <Container>
-    //             <LandingPage/>
-    //             <IntroPage/>
-    //             <EmploymentPage/>
-    //             <ProjectsPage/>
-    //             <SkillsPage/>
-    //             <EducationPage/>
-    //             <ContactsPage/>
-    //         </Container>
-    //         <ScrollTop {...props}>
-    //             <Fab color="secondary" size="small" aria-label="scroll back to top">
-    //                 <KeyboardArrowUpIcon />
-    //             </Fab>
-    //         </ScrollTop>
-    //     </React.Fragment>
-    // );
 }

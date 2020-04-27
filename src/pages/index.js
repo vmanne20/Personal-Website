@@ -11,14 +11,9 @@ import SkillsPage from '../components/SkillsPage';
 import ContactsPage from '../components/ContactsPage';
 import { Element, Events, scroller } from 'react-scroll';
 
-// function scrollToElement() {
-//     scroller.scrollTo('EmploymentPage', {
-//         duration: 800,
-//         delay: 0,
-//         smooth: 'easeInOutQuart'
-//     });
-//     console.log("scroll done");
-// }
+// document.ready(() => {
+//     console.log("READY");
+// });
 
 export default () => (
 // class PersonalWebsite extends React.Component {
