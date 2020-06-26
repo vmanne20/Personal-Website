@@ -7,10 +7,12 @@ class ProjectsPage extends Component {
     render() {
         const { name } = this.props;
         return (
+            <section id={name}>
             <div id={name} className={name}>
                 <SectionHeader name={name} color="white"/>
                 <ProjectsContent/>
             </div>
+            </section>
         );
     }
 }

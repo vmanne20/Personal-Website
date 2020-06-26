@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import '../css/index.css';
-import PropTypes from 'prop-types';
-import { AppBar, Tabs, Tab, Typography, Box, Toolbar, Container, useScrollTrigger, Fab, Zoom } from '@material-ui/core';
+import { AppBar, Tabs, Tab } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Scrollspy from 'react-scrollspy'
-import inView from 'in-view'
+import throttle from "lodash/throttle";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -36,38 +34,21 @@ const NavTabs = withStyles({
     //   borderBottom: '5px solid darkblue',
     //   height: 60,
     //   backgroundColor: "#0d47a1"
-      // #e8e8e8
     },
     indicator: {
       backgroundColor: 'white',
-      height: 4
+      height: 4, 
+      transition: 'none'
+    //   display: "flex",
+    //   justifyContent: "center",
     },
   })(Tabs);
-
-
-// const handleView = (item) => {
-//     var tabElem = document.querySelector(`#nav-${item}`);
-//     console.log("Tab: " + item);
-    
-//     let offsetHeight = 0.6*(window.innerHeight);
-//     inView.offset({ bottom: offsetHeight });
-    
-//     inView(`#${item}`)
-//     .on("enter", () => tabElem.classList.add('is-active'))
-//     .on("exit", el  => tabElem.classList.remove('is-active'));
-// };
-
-// // Apply method on each DOM element 
-// ['Home', 'Introduction', 'Employment', 'Projects', 'Education', 'Skills', 'Contacts'].forEach(handleView);
 
 const NavTab = withStyles((theme) => ({
     root: {
         height: 60,
         backgroundColor: "#1976d2",
         // fontWeight: theme.typography.fontWeightRegular,
-        // color: "#f5f5f5",
-        // color: "black",
-
         '&:hover': {
             color: 'white',
             backgroundColor: "#115293"
@@ -94,61 +75,202 @@ const NavTab = withStyles((theme) => ({
     />
 );
 
-function setProps(tabName) {
-    return {
-      id: `nav-${tabName}`,
-      'aria-controls': `nav-tabpanel-${tabName}`,
-      label: tabName,
-      value: tabName,
-      href: `#${tabName}`
-    };
+// function setProps(tabName) {
+//     return {
+//       id: `nav-${tabName}`,
+//       'aria-controls': `nav-tabpanel-${tabName}`,
+//       label: tabName,
+//       value: tabName,
+//       href: `#${tabName}`
+//     };
+// }
+
+const makeUnique = (hash, unique, i = 1) => {
+    const uniqueHash = i === 1 ? hash : `${hash}-${i}`;
+    if (!unique[uniqueHash]) {
+        unique[uniqueHash] = true;
+        return uniqueHash;
+    }
+    return makeUnique(hash, unique, i + 1);
+};
+  
+const textToHash = (text, unique = {}) => {
+    return makeUnique(
+        encodeURI(
+            text
+            .toLowerCase()
+            .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>|&#39;/g, "")
+            .replace(/[!@#\$%\^&\*\(\)=_\+\[\]{}`~;:'"\|,\.<>\/\?\s]+/g, "-")
+            .replace(/-+/g, "-")
+            .replace(/^-|-$/g, "")
+        ),
+        unique
+    );
+};
+
+const noop = () => {};
+  
+function useThrottledOnScroll(callback, delay) {
+    const throttledCallback = React.useMemo(() => 
+        (callback ? throttle(callback, delay) : noop),
+        [callback, delay]
+    );
+  
+    React.useEffect(() => {
+        if (throttledCallback === noop) return undefined;
+    
+        window.addEventListener("scroll", throttledCallback);
+        return () => {
+            window.removeEventListener("scroll", throttledCallback);
+            throttledCallback.cancel();
+        };
+    }, [throttledCallback]);
 }
 
-export default function NavBar() {
+export default function NavBar(props) {
     const classes = useStyles();
 
-    const [selectedTab, setValue] = React.useState("Home");
+    const [activeState, setActiveState] = React.useState(null);
+    // const [activeState, setActiveState] = React.useState("Home");
 
-    const handleChange = (event, newSelectedTab) => {
-        if (selectedTab !== newSelectedTab) {
-            setValue(newSelectedTab);
-            document.getElementById(`nav-${newSelectedTab}`).className = classes.selected;
+    const { tabsInScroll } = props;
+
+    let itemsServer = tabsInScroll.map(tab => {
+        const hash = textToHash(tab.text);
+        return {
+            icon: tab.icon || "",
+            text: tab.text,
+            component: tab.component,
+            hash: hash,
+            node: document.getElementById(hash)
+        };
+    });
+
+    const itemsClientRef = React.useRef([]);
+    React.useEffect(() => {
+        itemsClientRef.current = itemsServer;
+    }, [itemsServer]);
+
+    const clickedRef = React.useRef(false);
+    const unsetClickedRef = React.useRef(null);
+    const findActiveIndex = React.useCallback(() => {
+        if (activeState === null) setActiveState(itemsServer[0].hash);
+        if (clickedRef.current) return;
+    
+        let active;
+        for (let i = itemsClientRef.current.length - 1; i >= 0; i -= 1) {
+            // No hash if we're near the top of the page
+            if (document.documentElement.scrollTop < 0) {
+                active = { hash: null };
+                break;
+            }
+            
+            const item = itemsClientRef.current[i];
+        
+            if (item.node &&
+                item.node.offsetTop < 
+                document.documentElement.scrollTop + document.documentElement.clientHeight / 16
+            ) {
+                active = item;
+                break;
+            }
         }
-        var selectedComponent = document.getElementById(newSelectedTab);
-        selectedComponent.scrollIntoView({ 
-            behavior: "smooth", 
-            block: "start" 
-        });
+    
+        if (active && activeState !== active.hash) {
+            setActiveState(active.hash);
+        }
+    }, [activeState, itemsServer]);
+
+    useThrottledOnScroll(itemsServer.length > 0 ? findActiveIndex : null, 66);
+
+    const handleClick = hash => () => {
+        // Used to disable findActiveIndex if the page scrolls due to a click
+        clickedRef.current = true;
+        unsetClickedRef.current = setTimeout(() => {
+        clickedRef.current = false;
+        }, 1000);
+
+        if (activeState !== hash) {
+        setActiveState(hash);
+
+        if (window)
+            window.scrollTo({
+                top: document.getElementById(hash).getBoundingClientRect().top + window.pageYOffset,
+                behavior: "smooth"
+            });
+        }
     };
+
+    React.useEffect(
+        () => () => {
+            clearTimeout(unsetClickedRef.current);
+        },
+        []
+    );
+
+    // useEffect(() => {
+    //     // when component mounts, run this code
+    //     var i = 0;
+    //     props.compNames.forEach((name) => {
+    //         const comp = document.getElementById(name);
+    //         // divOffsets[name] = comp.offsetTop;
+    //         divOffsets[i] = { 
+    //             compName: name, 
+    //             pos: comp.offsetTop 
+    //         };
+    //         i++;
+    //     });
+    //     console.log(divOffsets);
+    // }, []);
+
+    // const handleChange = (event, newSelectedTab) => {
+    //     // console.log(props.compNames);
+    //     if (selectedTab !== newSelectedTab) {
+    //         setValue(newSelectedTab);
+    //         document.getElementById(`nav-${newSelectedTab}`).className = classes.selected;
+    //     }
+    //     document.getElementById(newSelectedTab).scrollIntoView({ 
+    //         behavior: "smooth", 
+    //         block: "start" 
+    //     });
+    // };
 
     return (
         <div className={classes.root}>
-            {/* <React.Fragment> */}
-                <Scrollspy items={ ['Home', 'Introduction', 'Employment', 'Projects', 'Education', 'Skills', 'Contacts'] } currentClassName="is-active"/>
-
-                <AppBar position="fixed" boxShadow={3}>
-                    <NavTabs centered={true} value={selectedTab} onChange={handleChange} aria-label="navigation">
-
-                            <NavTab {...setProps("Home")}/>
-                            <NavTab {...setProps("Introduction")}/>
-                            <NavTab {...setProps("Employment")}/>
-                            <NavTab {...setProps("Projects")}/>
-                            <NavTab {...setProps("Education")}/>
-                            <NavTab {...setProps("Skills")}/>
-                            <NavTab {...setProps("Contacts")}/>
-                    </NavTabs>
-                </AppBar>
-            
-                {/* <Container>
-                    <LandingPage/>
-                    <IntroPage/>
-                    <EmploymentPage/>
-                    <ProjectsPage/>
-                    <SkillsPage/>
-                    <EducationPage/>
-                    <ContactsPage/>
-                </Container> */}
-            {/* </React.Fragment> */}
+            <AppBar position="fixed" boxShadow={3}>
+                <NavTabs centered value={activeState ? activeState : itemsServer[0].hash}>
+                    {itemsServer.map(item2 => (
+                        <NavTab
+                            key={item2.hash}
+                            label={item2.text}
+                            onClick={handleClick(item2.hash)}
+                            value={item2.hash}
+                        />
+                    ))}
+                </NavTabs>
+            </AppBar>
+    
+            <div className="container">
+                {itemsServer.map(item1 => (
+                    <article id={item1.hash} key={item1.text}>
+                        {item1.component}
+                    </article>
+                ))}
+            </div>
         </div>
+
+        // <div className={classes.root}>
+        //     <AppBar position="fixed" boxShadow={3}>
+        //         <NavTabs centered={true} value={activeState} onChange={handleChange} aria-label="navigation">
+        //             <NavTab {...setProps("Home")}/>
+        //             <NavTab {...setProps("Introduction")}/>
+        //             <NavTab {...setProps("Employment")}/>
+        //             <NavTab {...setProps("Projects")}/>
+        //             <NavTab {...setProps("Education")}/>
+        //             <NavTab {...setProps("Skills")}/>
+        //             <NavTab {...setProps("Contacts")}/>
+        //         </NavTabs>
+        //     </AppBar>
+        // </div>
     );
 }
