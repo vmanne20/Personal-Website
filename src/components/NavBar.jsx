@@ -4,6 +4,9 @@ import { AppBar, Tabs, Tab } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import throttle from "lodash/throttle";
 
+// used to check if scroll position has changed
+let scrollTopPos = 0;
+
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -29,11 +32,8 @@ const useStyles = makeStyles(theme => ({
 
 const NavTabs = withStyles({
     root: {
-        backgroundColor: "#1976d2"
-    //   borderTop: '1px solid red',
-    //   borderBottom: '5px solid darkblue',
-    //   height: 60,
-    //   backgroundColor: "#0d47a1"
+        // backgroundColor: "#1976d2"
+        backgroundColor: "black"
     },
     indicator: {
       backgroundColor: 'white',
@@ -42,16 +42,16 @@ const NavTabs = withStyles({
     //   display: "flex",
     //   justifyContent: "center",
     },
-  })(Tabs);
+})(Tabs);
 
 const NavTab = withStyles((theme) => ({
     root: {
         height: 60,
-        backgroundColor: "#1976d2",
+        // backgroundColor: "#1976d2",
         // fontWeight: theme.typography.fontWeightRegular,
         '&:hover': {
             color: 'white',
-            backgroundColor: "#115293"
+            // backgroundColor: "#115293"
             // backgroundColor: "green"
         },
         // '&:focus': {
@@ -61,10 +61,10 @@ const NavTab = withStyles((theme) => ({
     },
     selected: {
         color: 'white',
-        backgroundColor: "#115293",
+        // backgroundColor: "#115293",
+        backgroundColor: "black",
         fontWeight: theme.typography.fontWeightBold,
     }
-
 })) ((props) =>
     <Tab
         component="a"
@@ -84,6 +84,8 @@ const NavTab = withStyles((theme) => ({
 //       href: `#${tabName}`
 //     };
 // }
+
+
 
 const makeUnique = (hash, unique, i = 1) => {
     const uniqueHash = i === 1 ? hash : `${hash}-${i}`;
@@ -154,28 +156,41 @@ export default function NavBar(props) {
     const clickedRef = React.useRef(false);
     const unsetClickedRef = React.useRef(null);
     const findActiveIndex = React.useCallback(() => {
-        if (activeState === null) setActiveState(itemsServer[0].hash);
-        if (clickedRef.current) return;
+
+        if (activeState === null) 
+            setActiveState(itemsServer[0].hash);
+        if (clickedRef.current) 
+            return;
     
         let active;
-        for (let i = itemsClientRef.current.length - 1; i >= 0; i -= 1) {
-            // No hash if we're near the top of the page
-            if (document.documentElement.scrollTop < 0) {
-                active = { hash: null };
-                break;
-            }
-            
-            const item = itemsClientRef.current[i];
-        
-            if (item.node &&
-                item.node.offsetTop < 
-                document.documentElement.scrollTop + document.documentElement.clientHeight / 16
-            ) {
-                active = item;
-                break;
-            }
+
+        // console.log("curr pos: " + document.documentElement.scrollTop);
+        // console.log("window height: " + window.innerHeight);
+        // console.log("bottom scroll pos: " + document.body.offsetHeight);
+        // console.log("prev pos: " + scrollTopPos);
+        // console.log(" ");
+
+        if (Math.ceil(document.documentElement.scrollTop) >= document.body.offsetHeight - window.innerHeight) {
+            active = itemsClientRef.current[itemsClientRef.current.length - 1];
+        } else {
+            scrollTopPos = document.documentElement.scrollTop;
+            for (let i = itemsClientRef.current.length - 1; i >= 0; i--) {
+                // No hash if we're near the top of the page
+                if (document.documentElement.scrollTop < 0) {
+                    active = { hash: null };
+                    break;
+                }
+                
+                const item = itemsClientRef.current[i];
+                if (item.node && document.documentElement.scrollTop + (document.documentElement.clientHeight / 14) >
+                    item.node.offsetTop) 
+                {
+                    active = item;
+                    break;
+                }
+            }  
         }
-    
+
         if (active && activeState !== active.hash) {
             setActiveState(active.hash);
         }

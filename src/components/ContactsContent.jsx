@@ -34,8 +34,8 @@ const styles = theme => ({
         }
     },
     icon: {
-        // fill: "black",
-        fill: "rgba(43, 41, 62, 0.845)"
+        fill: "black",
+        // fill: "rgba(43, 41, 62, 0.845)"
     }
 });
 
