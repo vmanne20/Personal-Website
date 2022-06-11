@@ -16,7 +16,7 @@ class ProjectsContent extends Component {
         };
 
         const mlbPlayerValuePredictor = {
-            link: 'https://github.com/vmanne20/MLB-Player-Value-Predictor',
+            link: 'https://github.com/vmanne20/MLB-Player-Value-Predictor/blob/master/ManneKanuri_FinalProject.ipynb',
             image: require('../../static/images/juansoto.jpg'),
             title: 'MLB Player Value Predictor',
             // date: 'Winter 2020',
@@ -106,20 +106,36 @@ class ProjectsContent extends Component {
         return (
             <div className="ProjectsContent">
                 <Grid container>
-                    <Grid container>
-                        <ProjectCard {...personalWebsite}/>
-                        <ProjectCard {...mlbPlayerValuePredictor}/>
-                        <ProjectCard {...taximize}/>
-                    </Grid>
-                    <Grid container>
-                        <ProjectCard {...autoRepairDB}/>
-                        <ProjectCard {...blabber}/>
-                        <ProjectCard {...canvasGroupMaker}/>
-                    </Grid>
-                    <Grid container>
-                        <ProjectCard {...headsUp}/>
-                        <ProjectCard {...whoOwnsWho}/>
-                        <ProjectCard {...answerIt}/>
+                    <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <ProjectCard {...personalWebsite}/>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <ProjectCard {...mlbPlayerValuePredictor}/>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <ProjectCard {...taximize}/>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6} md={4}>
+                            <ProjectCard {...autoRepairDB}/>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <ProjectCard {...blabber}/>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <ProjectCard {...canvasGroupMaker}/>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6} md={4}>
+                            <ProjectCard {...headsUp}/>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <ProjectCard {...whoOwnsWho}/>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <ProjectCard {...answerIt}/>
+                        </Grid>
                     </Grid>
                 </Grid>
             </div>

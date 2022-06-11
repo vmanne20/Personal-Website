@@ -80,9 +80,9 @@ const ContactsContent = withStyles(styles)(({ classes }) => {
                 </Grid>
 
                 <Grid item>
-                    <Link href={"mailto:vmanne20@vt.edu"} target="_blank">
+                    <Link href={"mailto:vkrishm12@gmail.com"} target="_blank">
                         <IconButton>
-                            <Tooltip title="Email: vmanne20@vt.edu" TransitionComponent={Zoom} arrow>
+                            <Tooltip title="Email: vkrishm12@gmail.com" TransitionComponent={Zoom} arrow>
                                 <Avatar className={classes.avatar}>
                                     <EmailIcon className={classes.icon} fontSize="large"/>
                                 </Avatar>

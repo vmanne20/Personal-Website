@@ -7,10 +7,6 @@ body {
     margin: 0;
 }
 
-.NavBar {
-    z-index: 9999;
-}
-
 /* Landing Page */
 .Home {
     background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(../../static/images/starrynight.jpg) no-repeat center center fixed;

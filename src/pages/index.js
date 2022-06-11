@@ -28,10 +28,10 @@ export default function PersonalWebsite() {
                         text: "Home",
                         component: <LandingPage name="Home"/>
                     },
-                    {
-                        text: "Introduction",
-                        component: <IntroPage name="Introduction"/>
-                    },
+                    // {
+                    //     text: "Introduction",
+                    //     component: <IntroPage name="Introduction"/>
+                    // },
                     {
                         text: "Employment",
                         component: <EmploymentPage name="Employment"/>
