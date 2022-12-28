@@ -105,39 +105,39 @@ class ProjectsContent extends Component {
 
         return (
             <div className="ProjectsContent">
-                {/* <Grid container> */}
-                    <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <ProjectCard {...personalWebsite}/>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <ProjectCard {...mlbPlayerValuePredictor}/>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <ProjectCard {...taximize}/>
-                        </Grid>
-
-                        <Grid item xs={12} sm={6} md={4}>
-                            <ProjectCard {...autoRepairDB}/>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <ProjectCard {...blabber}/>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <ProjectCard {...canvasGroupMaker}/>
-                        </Grid>
-
-                        <Grid item xs={12} sm={6} md={4}>
-                            <ProjectCard {...headsUp}/>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <ProjectCard {...whoOwnsWho}/>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <ProjectCard {...answerIt}/>
-                        </Grid>
+                {/* column values indicate how many columns in the 12-col layout the container should take up when the viewport hits that breakpoint */}
+                <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
+                    {/*  */}
+                    <Grid item xs={12} sm={6} md={4}>
+                        <ProjectCard {...personalWebsite}/>
                     </Grid>
-                {/* </Grid> */}
+                    <Grid item xs={12} sm={6} md={4}>
+                        <ProjectCard {...mlbPlayerValuePredictor}/>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <ProjectCard {...taximize}/>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4}>
+                        <ProjectCard {...autoRepairDB}/>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <ProjectCard {...blabber}/>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <ProjectCard {...canvasGroupMaker}/>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={4}>
+                        <ProjectCard {...headsUp}/>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <ProjectCard {...whoOwnsWho}/>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <ProjectCard {...answerIt}/>
+                    </Grid>
+                </Grid>
             </div>
         );
     }

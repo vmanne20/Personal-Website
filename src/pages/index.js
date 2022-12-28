@@ -44,10 +44,10 @@ export default function PersonalWebsite() {
                         text: "Education",
                         component: <EducationPage name="Education"/>
                     },
-                    {
-                        text: "Skills",
-                        component: <SkillsPage name="Skills"/>
-                    },
+                    // {
+                    //     text: "Skills",
+                    //     component: <SkillsPage name="Skills"/>
+                    // },
                     {
                         text: "Contacts",
                         component: <ContactsPage name="Contacts"/>
