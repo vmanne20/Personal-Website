@@ -13,10 +13,10 @@ class EmploymentPage extends Component {
         const { name } = this.props;
         return (
             <section id={name}>
-            <div id={name} className={name}>
-                <SectionHeader name={name} color="white"/>
-                <EmploymentContent/>
-            </div>
+                <div id={name} className={name}>
+                    <SectionHeader name={name} color="white"/>
+                    <EmploymentContent/>
+                </div>
             </section>
         );
     }

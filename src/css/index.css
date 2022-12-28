@@ -8,7 +8,7 @@ body {
 }
 
 /* Landing Page */
-.Home {
+.Landing {
     background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(../../static/images/starrynight.jpg) no-repeat center center fixed;
     height: 100vh; 
     width: 100%;
@@ -19,22 +19,29 @@ body {
 }
 
 .LandingContent {
-    /* these properties help center the content */
-    display: inline-block; 
-    width: 50%;
-    margin: 18% 25% 0 25%;  
+    /* center the content */
+    display: inline-block;
+    position: relative;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
 }
 
-.LandingContent > h1 {
+.LandingHeader {
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.LandingHeader > h1 {
     color: white;
     font-size: 55px;
     word-spacing: 5px;
     text-align: center;
     font-family: 'Merienda One', cursive;
-    line-height: 50%;
+    line-height: 10%;
 }
 
-.LandingContent > p {
+.LandingHeader > p {
     color: white;
     font-size: 22px;
     word-spacing: 5px;
@@ -43,7 +50,7 @@ body {
     line-height: 50%;
 }
 
-.Introduction {
+/* .Introduction {
     background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 1)), url(../../static/images/goldengate.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -51,7 +58,7 @@ body {
     background-size: cover;
     height: 100vh; 
     width: 100%;
-}
+} */
 
 .SectionHeader {
     display: inline-block; 
@@ -84,15 +91,6 @@ body {
     vertical-align: middle; */
 }
 
-/* .tjhsst {
-    display: inline-block;
-    width: 120px;
-    height: 120px;
-    position: absolute;
-    left: 27%;
-    top: 22%;
-} */
-
 .IntroImage > img {
     border: 5px solid white;
     border-radius: 50%;
@@ -103,15 +101,6 @@ body {
     height: 200px;
     /* text-align: center; */
 }
-
-/* .vt {
-    display: inline-block;
-    height: 30%;
-    width: 130px;
-    position: absolute;
-    left: 20%;
-    top: 35%;
-} */
 
 .IntroContent {
     /* these properties help center the content */
@@ -136,21 +125,20 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /* height: 100%; */
     height: auto; 
     width: 100%;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .EmploymentContent {
     /* height: 30%; */
-    width: 65%;  
+    width: 90%;  
     display: block;
     margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 4%;
-    z-index: 2;
+    /* z-index: 2; */
     /* border: 3px solid blue; */
 }
 

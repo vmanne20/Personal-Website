@@ -105,7 +105,7 @@ class ProjectsContent extends Component {
 
         return (
             <div className="ProjectsContent">
-                <Grid container>
+                {/* <Grid container> */}
                     <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
                         <Grid item xs={12} sm={6} md={4}>
                             <ProjectCard {...personalWebsite}/>
@@ -137,7 +137,7 @@ class ProjectsContent extends Component {
                             <ProjectCard {...answerIt}/>
                         </Grid>
                     </Grid>
-                </Grid>
+                {/* </Grid> */}
             </div>
         );
     }

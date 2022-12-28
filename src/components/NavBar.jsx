@@ -15,14 +15,14 @@ const useStyles = makeStyles(theme => ({
     },
     atTop: {
         backgroundColor: "black",
-        transition: "background-color 0.1s linear",
+        // transition: "background-color 0.05s linear",
         height: 58
     },
     scrolling: {
-        background: "linear-gradient(45deg, #107AA8 30%, #1658B6 90%)",
+        background: "linear-gradient(45deg, #107AA8 10%, #1658B6 100%)",
         boxShadow: '0 2px 4px 2px rgba(0,0,0,0.5)',
         // backgroundColor: "rgba(0,0,0,0.5)",
-        transition: "background-color 0.1s linear",
+        // transition: "background-color 0.05s linear",
         height: 58
     }
 }));
@@ -64,19 +64,19 @@ const NavTab = withStyles((theme) => ({
         // transition: "backgroundColor 3s ease-in-out",
         // color: "green",
         '&:hover': {
-            // color: '#1AC076',
+            color: '#0fd69a',
             backgroundColor: "rgba(0,0,0,0.5)"
             // backgroundColor: "green"
         }
     },
     selected: {
-        // color: '#1AC076',
+        // color: '#0fd69a',
         color: '#F5F2FA',
         fontSize: 15,
         // backgroundColor: "#115293",
         // backgroundColor: "black",
         fontWeight: theme.typography.fontWeightBold,
-        transition: "color 0.4s linear"
+        transition: "color 0.05s linear"
     }
 })) ((props) =>
     <Tab

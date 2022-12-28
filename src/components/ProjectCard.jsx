@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/index.css';
-import { Grid, Card, CardHeader, CardActionArea, CardActions, Button, CardMedia, CardContent, Typography, Link, Tooltip, Zoom, IconButton, Collapse, Modal, Backdrop, Fade, Dialog, Slide } from '@material-ui/core';
+import { Grid, Card, CardHeader, CardActionArea, CardActions, Button, CardMedia, CardContent, 
+    Typography, Link, Tooltip, Zoom, IconButton, Collapse, Modal, Backdrop, Fade, Dialog, Slide } from '@material-ui/core';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
@@ -97,7 +98,6 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
                     alt={title}
                     height="200"
                     image={image}
-                    title="View Code on Github"
                     onClick={handleOpen}
                     />
                 </Tooltip>     
@@ -108,7 +108,7 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
                 title={title}
             />
 
-             <CardActions>
+             {/* <CardActions>
                 <Button size="small" color="primary" onClick={handleOpen}>
                     Learn More
                 </Button>
@@ -117,7 +117,7 @@ const ProjectCard = withStyles(styles)(({ classes, link, image, title, descripti
                         View in Github
                     </Button>
                 </Link>
-            </CardActions>
+            </CardActions> */}
             
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}
             TransitionComponent={Transition}>

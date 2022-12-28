@@ -59,11 +59,21 @@ class EmploymentContent extends Component {
 
         return (
             <div className="EmploymentContent">
-                <Grid container spacing={5}>
-                    <EmploymentCard {...microsoft}/>
-                    <EmploymentCard {...aws}/>
-                    <EmploymentCard {...amazon}/>
-                    <EmploymentCard {...caci}/>
+                <Grid container>
+                    <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
+                        <Grid item sm={12} md={6}>
+                            <EmploymentCard {...microsoft}/>
+                        </Grid>
+                        <Grid item sm={12} md={6}>
+                            <EmploymentCard {...aws}/>
+                        </Grid>
+                        <Grid item sm={12} md={6}>
+                            <EmploymentCard {...amazon}/>
+                        </Grid>
+                        <Grid item sm={12} md={6}>
+                            <EmploymentCard {...caci}/>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </div>
         );

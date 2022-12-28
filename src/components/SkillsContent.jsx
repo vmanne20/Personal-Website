@@ -9,15 +9,15 @@ class SkillsContent extends Component {
             name: 'Languages',
             tabs: [{
                 name: 'Advanced', 
-                items: ['Java', 'Python', 'HTML']
+                items: ['C#', 'Java']
             }, 
             {
                 name: 'Intermediate',
-                items: ['JavaScript', 'C', 'SQL']
+                items: ['JavaScript', 'HTML', 'SQL']
             }, 
             {
                 name: 'Basic',
-                items: ['Ruby', 'C#', 'Bash']
+                items: ['Ruby', 'Python', 'C', 'Bash']
             }]
         };
 

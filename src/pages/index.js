@@ -26,7 +26,7 @@ export default function PersonalWebsite() {
                 <NavBar tabsInScroll={[
                     {
                         text: "Home",
-                        component: <LandingPage name="Home"/>
+                        component: <LandingPage name="Landing"/>
                     },
                     // {
                     //     text: "Introduction",

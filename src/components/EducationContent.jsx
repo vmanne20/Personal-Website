@@ -26,11 +26,13 @@ class EducationContent extends Component {
 
         return(
             <div className="EducationContent">
-                <Grid container>
-                    <Grid container>
-                        <EducationCard {...tj}/>
+                <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
+                    <Grid item sm={12} md={6}>
                         <EducationCard {...vt}/>
                     </Grid>
+                    <Grid item sm={12} md={6}>
+                        <EducationCard {...tj}/>
+                    </Grid >
                 </Grid>
             </div>
         );

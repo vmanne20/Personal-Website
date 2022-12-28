@@ -4,19 +4,16 @@ import '../css/index.css';
 
 class LandingContent extends Component {
     render() {
+        const { name } = this.props;
         return (
-            <div className="LandingContent">
-                <Grid container spacing={3}>
-                    <Grid item sm={12} md={6} lg={4}>
-                        <div>
-                            <h1>Vamsi Manne</h1>
-                            <p>Software Engineer. Learner. Creator.</p>
-                        </div>
-                    </Grid>
-                </Grid>
+            <div className={`${name}Content`}>
+                <div className="LandingHeader">
+                    <h1>Vamsi Manne</h1>
+                    <p>Software Engineer. Learner. Creator.</p>
+                </div>
             </div>
         );
-    }  
+    }
 }
 
 export default LandingContent;
